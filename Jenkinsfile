@@ -26,7 +26,7 @@ pipeline {
                 withSonarQubeEnv('Sonar_local'){
                     sh '''
                     echo "Setando variavel"
-                    ${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackEnd -Dsonar.host.url=http://localhost:9001 -Dsonar.login=e50f641085e979346b003ba826bedd45e87a3530 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java
+                    ${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackEnd -Dsonar.host.url=http://localhost:9001 -Dsonar.login=c0009ad086b71df21e89e2ce1a957f87c2932157 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java
                 '''
                 } 
             }
@@ -36,7 +36,7 @@ pipeline {
                 sh '''
                     echo "Quality Gate"
                 '''
-                    sleep(5)
+                    sleep(10)
                     timeout(time: 1, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: true
                     }
